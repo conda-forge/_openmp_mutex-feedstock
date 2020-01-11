@@ -15,7 +15,14 @@ Current build status
 ====================
 
 
-<table>
+<table><tr>
+    <td>Travis</td>
+    <td>
+      <a href="https://travis-ci.com/conda-forge/_openmp_mutex-feedstock">
+        <img alt="macOS" src="https://img.shields.io/travis/com/conda-forge/_openmp_mutex-feedstock/master.svg?label=macOS">
+      </a>
+    </td>
+  </tr>
     
   <tr>
     <td>Azure</td>
@@ -35,6 +42,13 @@ Current build status
                   <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/_openmp_mutex-feedstock?branchName=master&jobName=linux&configuration=linux_" alt="variant">
                 </a>
               </td>
+            </tr><tr>
+              <td>linux_ppc64le</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=8821&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/_openmp_mutex-feedstock?branchName=master&jobName=linux&configuration=linux_ppc64le_" alt="variant">
+                </a>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -51,12 +65,6 @@ Current build status
     <td>Windows</td>
     <td>
       <img src="https://img.shields.io/badge/Windows-disabled-lightgrey.svg" alt="Windows disabled">
-    </td>
-  </tr>
-  <tr>
-    <td>Linux_ppc64le</td>
-    <td>
-      <img src="https://img.shields.io/badge/ppc64le-disabled-lightgrey.svg" alt="ppc64le disabled">
     </td>
   </tr>
 </table>

@@ -9,11 +9,11 @@ source:
   path: .
 
 build:
-  string: 0_llvm
-  skip: true  # [not (linux64 or ppc64le)]
+  string: 1_llvm
+  skip: true  # [not (linux64 or ppc64le or osx)]
   always_include_files:
     # this major version has to match the libgomp version from gcc
-    - lib/libgomp.so.1
+    - lib/libgomp.so.1  # [linux]
   track_features:
     - llvm_openmp
   ignore_run_exports:

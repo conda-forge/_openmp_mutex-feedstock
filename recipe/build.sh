@@ -8,10 +8,15 @@ fi
 mkdir -p $PREFIX/lib
 pushd $PREFIX/lib/
 
-echo "Linking 'libgomp${SHLIB_EXT}.1' to 'libomp${SHLIB_EXT}'"
-ln -s libomp${SHLIB_EXT} libgomp${SHLIB_EXT}.1
+if [[ ${target_platform} != "osx-64" ]]; then
 
-echo "Checking link"
-ls -lah libgomp*
+    echo "Linking 'libgomp${SHLIB_EXT}.1' to 'libomp${SHLIB_EXT}'"
+    ln -s libomp${SHLIB_EXT} libgomp${SHLIB_EXT}.1
+
+    echo "Checking link"
+    ls -lah libgomp*
+fi
+
+ln -s $PREFIX/lib/libomp$SHLIB_EXT $PREFIX/lib/libiomp5$SHLIB_EXT
 
 popd

@@ -35,12 +35,14 @@ test:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
   commands:
-    - test -f $PREFIX/lib/libgomp.so.1
-    - if [ ! "$PREFIX/lib/libgomp.so.1" -ef "$PREFIX/lib/libomp.so" ]; then exit 1; fi
+    - test -f $PREFIX/lib/libgomp.so.1  # [linux]
+    - if [ ! "$PREFIX/lib/libgomp.so.1" -ef "$PREFIX/lib/libomp.so" ]; then exit 1; fi  # [linux]
     - rm -f omp_hello && ${CC} -v -fopenmp omp_hello.c -o omp_hello && ./omp_hello
     - ldd omp_hello  # [linux]
     - rm -f omp_hello && ${CXX} -v -fopenmp omp_hello.c -o omp_hello && ./omp_hello
     - ldd omp_hello  # [linux]
+    - test -f ${REFIX/lib/libiomp5.so  # [linux]
+    - test -f ${REFIX/lib/libiomp5.dylib  # [psx]
   files:
     - omp_hello.c
 

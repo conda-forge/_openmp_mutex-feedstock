@@ -1,6 +1,6 @@
 {% set name = "_openmp_mutex" %}
 {% set version = "4.5" %}
-{% set build = "2" %}
+{% set build = "3" %}
 
 package:
   name: {{ name|lower }}
@@ -30,7 +30,6 @@ requirements:
   host:
   run:
     - llvm-openmp >=9.0.1
-    - _libgcc_mutex {{ _libgcc_mutex }}  # [linux64 or ppc64le]
 
 test:
   requires:

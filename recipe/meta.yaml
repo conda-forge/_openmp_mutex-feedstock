@@ -38,14 +38,14 @@ test:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
   commands:
-    - test -f $PREFIX/lib/libgomp.so.1                                                    # [unix]
-    - if [ ! "$PREFIX/lib/libgomp.so.1" -ef "$PREFIX/lib/libomp.so" ]; then exit 1; fi    # [unix]
-    - rm -f omp_hello && ${CC} -v -fopenmp omp_hello.c -o omp_hello && ./omp_hello        # [unix]
+    - test -f $PREFIX/lib/libgomp.so.1                                                    # [linux]
+    - if [ ! "$PREFIX/lib/libgomp.so.1" -ef "$PREFIX/lib/libomp.so" ]; then exit 1; fi    # [linux]
+    - rm -f omp_hello && ${CC} -v -fopenmp omp_hello.c -o omp_hello && ./omp_hello        # [linux]
     - ldd omp_hello                                                                       # [linux]
-    - rm -f omp_hello && ${CXX} -v -fopenmp omp_hello.c -o omp_hello && ./omp_hello       # [unix]
+    - rm -f omp_hello && ${CXX} -v -fopenmp omp_hello.c -o omp_hello && ./omp_hello       # [linux]
     - ldd omp_hello                                                                       # [linux]
-    - cl.exe -fopenmp:llvm omp_hello.c -o omp_hello %LIBRARY_LIB%\\libiomp5md.lib         # [win]
-    - omp_hello                                                                           # [win]
+    - cl.exe -fopenmp:llvm omp_hello.c -o omp_hello %LIBRARY_LIB%\\libiomp5md.lib         # [win and openmp_impl in ("llvm", "intel")]
+    - omp_hello                                                                           # [win and openmp_impl in ("llvm", "intel")]
   files:
     - omp_hello.c
 

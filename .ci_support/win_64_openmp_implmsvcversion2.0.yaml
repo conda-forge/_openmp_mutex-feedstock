@@ -1,0 +1,17 @@
+c_compiler:
+- vs2022
+channel_sources:
+- conda-forge
+channel_targets:
+- conda-forge main
+cxx_compiler:
+- vs2022
+openmp_impl:
+- msvc
+target_platform:
+- win-64
+version:
+- '2.0'
+zip_keys:
+- - version
+  - openmp_impl

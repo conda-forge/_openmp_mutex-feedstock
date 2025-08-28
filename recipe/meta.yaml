@@ -1,6 +1,5 @@
 {% set name = "_openmp_mutex" %}
-{% set version = "4.5" %}
-{% set build = "3" %}
+{% set build = "4" %}
 
 package:
   name: {{ name|lower }}
@@ -11,11 +10,12 @@ source:
 
 build:
   number: {{ build }}
-  string: {{ build }}_kmp_llvm
-  skip: true  # [not linux]
+  string: {{ build }}_kmp_llvm           # [openmp_impl == "llvm"]
+  string: {{ build }}_vcomp_kmp_intel    # [openmp_impl == "intel"]
+  string: {{ build }}_vcomp_msvc         # [openmp_impl == "msvc"]
   always_include_files:
     # this major version has to match the libgomp version from gcc
-    - lib/libgomp.so.1
+    - lib/libgomp.so.1             # [linux]
   # Remove track_features because directly depending on mutex=*=*llvm
   # would make the downstream package have low priority
   # For eg: newer blas packages are not used by the solver
@@ -29,19 +29,23 @@ build:
 requirements:
   host:
   run:
-    - llvm-openmp >=9.0.1
+    - llvm-openmp >=9.0.1                # [openmp_impl == "llvm"]
+    - intel-openmp >=2020                # [openmp_impl == "intel"]
+    - vcomp14                            # [openmp_impl == "msvc"]
 
 test:
   requires:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
   commands:
-    - test -f $PREFIX/lib/libgomp.so.1
-    - if [ ! "$PREFIX/lib/libgomp.so.1" -ef "$PREFIX/lib/libomp.so" ]; then exit 1; fi
-    - rm -f omp_hello && ${CC} -v -fopenmp omp_hello.c -o omp_hello && ./omp_hello
-    - ldd omp_hello  # [linux]
-    - rm -f omp_hello && ${CXX} -v -fopenmp omp_hello.c -o omp_hello && ./omp_hello
-    - ldd omp_hello  # [linux]
+    - test -f $PREFIX/lib/libgomp.so.1                                                    # [linux]
+    - if [ ! "$PREFIX/lib/libgomp.so.1" -ef "$PREFIX/lib/libomp.so" ]; then exit 1; fi    # [linux]
+    - rm -f omp_hello && ${CC} -v -fopenmp omp_hello.c -o omp_hello && ./omp_hello        # [linux]
+    - ldd omp_hello                                                                       # [linux]
+    - rm -f omp_hello && ${CXX} -v -fopenmp omp_hello.c -o omp_hello && ./omp_hello       # [linux]
+    - ldd omp_hello                                                                       # [linux]
+    - cl.exe -fopenmp:llvm omp_hello.c -o omp_hello %LIBRARY_LIB%\\libiomp5md.lib         # [win and openmp_impl in ("llvm", "intel")]
+    - omp_hello                                                                           # [win and openmp_impl in ("llvm", "intel")]
   files:
     - omp_hello.c
 

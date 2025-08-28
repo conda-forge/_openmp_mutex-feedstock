@@ -47,6 +47,34 @@ Current build status
                   <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/_openmp_mutex-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_" alt="variant">
                 </a>
               </td>
+            </tr><tr>
+              <td>osx_64</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=8821&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/_openmp_mutex-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>win_64_openmp_implintelversion4.5</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=8821&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/_openmp_mutex-feedstock?branchName=main&jobName=win&configuration=win%20win_64_openmp_implintelversion4.5" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>win_64_openmp_implllvmversion4.5</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=8821&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/_openmp_mutex-feedstock?branchName=main&jobName=win&configuration=win%20win_64_openmp_implllvmversion4.5" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>win_64_openmp_implmsvcversion2.0</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=8821&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/_openmp_mutex-feedstock?branchName=main&jobName=win&configuration=win%20win_64_openmp_implmsvcversion2.0" alt="variant">
+                </a>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -60,7 +88,7 @@ Current release info
 
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-_openmp_mutex-green.svg)](https://anaconda.org/conda-forge/_openmp_mutex) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/_openmp_mutex.svg)](https://anaconda.org/conda-forge/_openmp_mutex) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/_openmp_mutex.svg)](https://anaconda.org/conda-forge/_openmp_mutex) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/_openmp_mutex.svg)](https://anaconda.org/conda-forge/_openmp_mutex) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-__openmp__mutex-green.svg)](https://anaconda.org/conda-forge/_openmp_mutex) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/_openmp_mutex.svg)](https://anaconda.org/conda-forge/_openmp_mutex) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/_openmp_mutex.svg)](https://anaconda.org/conda-forge/_openmp_mutex) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/_openmp_mutex.svg)](https://anaconda.org/conda-forge/_openmp_mutex) |
 
 Installing _openmp_mutex
 ========================

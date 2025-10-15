@@ -1,7 +1,7 @@
 if [[ "$target_platform" == "osx-"* ]]; then
-  newlink = libgomp.1.dylib
+  newlink=libgomp.1.dylib
 else
-  newlink = libgomp.so.1
+  newlink=libgomp.so.1
 fi
 
 rm -f $PREFIX/lib/${newlink}

@@ -1,5 +1,5 @@
 {% set name = "_openmp_mutex" %}
-{% set build = "5" %}
+{% set build = "6" %}
 
 package:
   name: {{ name|lower }}

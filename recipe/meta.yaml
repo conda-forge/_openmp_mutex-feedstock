@@ -1,5 +1,5 @@
 {% set name = "_openmp_mutex" %}
-{% set build = "6" %}
+{% set build = "7" %}
 
 package:
   name: {{ name|lower }}
@@ -11,7 +11,7 @@ source:
 build:
   number: {{ build }}
   string: {{ build }}_kmp_llvm           # [openmp_impl == "llvm"]
-  string: {{ build }}_vcomp_kmp_intel    # [openmp_impl == "intel"]
+  string: {{ build }}_vcomp_kmp_intel    # [openmp_impl == "intel" and win]
   string: {{ build }}_vcomp_msvc         # [openmp_impl == "msvc"]
   always_include_files:
     # this major version has to match the libgomp version from gcc

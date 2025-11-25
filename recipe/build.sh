@@ -1,20 +1,17 @@
-if [[ "$target_platform" == "osx-"* ]]; then
-  newlink=libgomp.1.dylib
-else
-  newlink=libgomp.so.1
-fi
-
-rm -f $PREFIX/lib/${newlink}
-if [ -f $PREFIX/lib/${newlink} ]; then
-    echo "could not remove \$PREFIX/lib/libgomp${newlink}"
-    exit 1
-fi
-
 mkdir -p $PREFIX/lib
 pushd $PREFIX/lib/
 
-echo "Linking '${newlink}' to 'libomp${SHLIB_EXT}'"
-ln -s libomp${SHLIB_EXT} ${newlink}
+if [[ "$target_platform" == "osx-"* ]]; then
+  rm -f $PREFIX/lib/libgomp.*dylib
+  echo "Linking 'libgomp.dylib' to 'libomp.dylib'"
+  ln -sf libomp.dylib libgomp.1.dylib
+  echo "Linking 'libgomp.1.dylib' to 'libomp.dylib'"
+  ln -sf libomp.dylib libgomp.dylib
+else
+  rm -f $PREFIX/lib/libgomp.so
+  echo "Linking 'libgomp.so.1' to 'libomp.so'"
+  ln -sf libomp.so libgomp.so.1
+fi
 
 echo "Checking link"
 ls -lah libgomp*

@@ -82,6 +82,27 @@ Current build status
                   <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/_openmp_mutex-feedstock?branchName=main&jobName=win&configuration=win%20win_64_openmp_implmsvcversion2.0" alt="variant">
                 </a>
               </td>
+            </tr><tr>
+              <td>win_arm64_openmp_implintelversion4.5</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=8821&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/_openmp_mutex-feedstock?branchName=main&jobName=win&configuration=win%20win_arm64_openmp_implintelversion4.5" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>win_arm64_openmp_implllvmversion4.5</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=8821&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/_openmp_mutex-feedstock?branchName=main&jobName=win&configuration=win%20win_arm64_openmp_implllvmversion4.5" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>win_arm64_openmp_implmsvcversion2.0</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=8821&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/_openmp_mutex-feedstock?branchName=main&jobName=win&configuration=win%20win_arm64_openmp_implmsvcversion2.0" alt="variant">
+                </a>
+              </td>
             </tr>
           </tbody>
         </table>

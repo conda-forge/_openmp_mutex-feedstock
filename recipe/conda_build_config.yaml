@@ -1,6 +1,6 @@
 version:
 - 4.5
-- 4.5         # [win]
+- 4.5         # [win and x86_64]
 - 2.0         # [win]
 openmp_impl:
 - llvm

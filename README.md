@@ -41,24 +41,10 @@ Current build status
                 </a>
               </td>
             </tr><tr>
-              <td>win_64_openmp_implintelversion4.5</td>
+              <td>osx_arm64</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=8821&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/_openmp_mutex-feedstock?branchName=main&jobName=win&configuration=win%20win_64_openmp_implintelversion4.5" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>win_64_openmp_implllvmversion4.5</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=8821&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/_openmp_mutex-feedstock?branchName=main&jobName=win&configuration=win%20win_64_openmp_implllvmversion4.5" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>win_64_openmp_implmsvcversion2.0</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=8821&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/_openmp_mutex-feedstock?branchName=main&jobName=win&configuration=win%20win_64_openmp_implmsvcversion2.0" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/_openmp_mutex-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_" alt="variant">
                 </a>
               </td>
             </tr>
@@ -86,31 +72,73 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `_openmp_mutex` can be installed with `conda`:
+How to use
+----------
+
+<details>
+<summary>With conda</summary>
 
 ```
 conda install _openmp_mutex
 ```
 
-or with `mamba`:
+</details>
+
+<details>
+<summary>With mamba</summary>
 
 ```
 mamba install _openmp_mutex
 ```
 
-It is possible to list all of the versions of `_openmp_mutex` available on your platform with `conda`:
+</details>
+
+<details>
+<summary>With pixi</summary>
+
+```
+# for adding to your local project
+pixi add _openmp_mutex
+# for installing globally
+pixi global install _openmp_mutex
+```
+
+</details>
+
+Search package versions
+-----------------------
+
+It is possible to list all of the versions of `_openmp_mutex` available on your platform:
+
+<details>
+<summary>With conda</summary>
 
 ```
 conda search _openmp_mutex --channel conda-forge
 ```
 
-or with `mamba`:
+</details>
+
+<details>
+<summary>With mamba</summary>
 
 ```
 mamba search _openmp_mutex --channel conda-forge
 ```
 
-Alternatively, `mamba repoquery` may provide more information:
+</details>
+
+<details>
+<summary>With pixi</summary>
+
+```
+pixi search _openmp_mutex --channel conda-forge
+```
+
+</details>
+
+<details>
+<summary>With mamba repoquery, which may provide more information</summary>
 
 ```
 # Search all versions available on your platform:
@@ -122,6 +150,8 @@ mamba repoquery whoneeds _openmp_mutex --channel conda-forge
 # List dependencies of `_openmp_mutex`:
 mamba repoquery depends _openmp_mutex --channel conda-forge
 ```
+
+</details>
 
 
 About conda-forge

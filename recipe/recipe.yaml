@@ -1,0 +1,93 @@
+schema_version: 1
+
+context:
+  build_number: 8
+
+package:
+  name: _openmp_mutex
+  version: ${{ version }}
+
+source:
+  path: .
+
+build:
+  number: ${{ build_number }}
+  # llvm-openmp is not available for RISC-V yet.
+  skip: riscv64
+  string: ${{ build_number ~ '_kmp_llvm' if openmp_impl == 'llvm' else build_number ~ '_vcomp_kmp_intel' if openmp_impl == 'intel' else build_number ~ '_vcomp_msvc' }}
+  script:
+    - if: unix
+      then: build.sh
+  always_include_files:
+    # This major version has to match the libgomp version from GCC.
+    - if: linux
+      then: lib/libgomp.so.1
+
+requirements:
+  run:
+    - if: openmp_impl == "llvm"
+      then: llvm-openmp >=9.0.1
+    - if: openmp_impl == "intel"
+      then: intel-openmp >=2020
+    - if: openmp_impl == "msvc"
+      then: vcomp14
+  ignore_run_exports:
+    from_package:
+      - _openmp_mutex
+  run_exports:
+    - ${{ pin_subpackage('_openmp_mutex', upper_bound=None) }}
+
+tests:
+  - package_contents:
+      files:
+        - if: linux
+          then: lib/libgomp.so.1
+        - if: osx
+          then:
+            - lib/libgomp.dylib
+            - lib/libgomp.1.dylib
+  - if: linux
+    then:
+      files:
+        recipe:
+          - omp_hello.c
+      requirements:
+        build:
+          - ${{ compiler('c') }}
+          - ${{ compiler('cxx') }}
+          - ${{ stdlib('c') }}
+      script:
+        - test "$PREFIX/lib/libgomp.so.1" -ef "$PREFIX/lib/libomp.so"
+        - $CC -v -fopenmp omp_hello.c -Wl,-rpath,$PREFIX/lib -o omp_hello_c
+        - $CXX -v -fopenmp omp_hello.c -Wl,-rpath,$PREFIX/lib -o omp_hello_cxx
+        - if: build_platform == target_platform
+          then:
+            - ./omp_hello_c
+            - ./omp_hello_cxx
+            - ldd omp_hello_c
+            - ldd omp_hello_cxx
+  - if: win and openmp_impl in ("llvm", "intel")
+    then:
+      files:
+        recipe:
+          - omp_hello.c
+      requirements:
+        build:
+          - ${{ compiler('c') }}
+          - ${{ stdlib('c') }}
+      script:
+        - cl.exe /openmp:llvm omp_hello.c /Fe:omp_hello.exe /link %LIBRARY_LIB%\libiomp5md.lib
+        - omp_hello.exe
+        - ping 127.0.0.1 -n 3 > nul
+        - del /F /Q omp_hello.exe omp_hello.obj
+
+about:
+  homepage: https://github.com/conda-forge/openmp-feedstock
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: OpenMP Implementation Mutex
+
+extra:
+  recipe-maintainers:
+    - isuruf
+    - beckermr

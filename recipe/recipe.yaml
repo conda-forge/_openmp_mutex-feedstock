@@ -12,6 +12,8 @@ source:
 
 build:
   number: ${{ build_number }}
+  # llvm-openmp is not available for RISC-V yet.
+  skip: riscv64
   string: ${{ build_number ~ '_kmp_llvm' if openmp_impl == 'llvm' else build_number ~ '_vcomp_kmp_intel' if openmp_impl == 'intel' else build_number ~ '_vcomp_msvc' }}
   script:
     - if: unix
@@ -56,12 +58,12 @@ tests:
           - ${{ stdlib('c') }}
       script:
         - test "$PREFIX/lib/libgomp.so.1" -ef "$PREFIX/lib/libomp.so"
-        - $CC -v -fopenmp omp_hello.c -o omp_hello_c
-        - ./omp_hello_c
-        - $CXX -v -fopenmp omp_hello.c -o omp_hello_cxx
-        - ./omp_hello_cxx
+        - $CC -v -fopenmp omp_hello.c -Wl,-rpath,$PREFIX/lib -o omp_hello_c
+        - $CXX -v -fopenmp omp_hello.c -Wl,-rpath,$PREFIX/lib -o omp_hello_cxx
         - if: build_platform == target_platform
           then:
+            - ./omp_hello_c
+            - ./omp_hello_cxx
             - ldd omp_hello_c
             - ldd omp_hello_cxx
   - if: win and openmp_impl in ("llvm", "intel")
@@ -74,8 +76,10 @@ tests:
           - ${{ compiler('c') }}
           - ${{ stdlib('c') }}
       script:
-        - cl.exe -fopenmp:llvm omp_hello.c -o omp_hello %LIBRARY_LIB%\libiomp5md.lib
-        - omp_hello
+        - cl.exe /openmp:llvm omp_hello.c /Fe:omp_hello.exe /link %LIBRARY_LIB%\libiomp5md.lib
+        - omp_hello.exe
+        - ping 127.0.0.1 -n 3 > nul
+        - del /F /Q omp_hello.exe omp_hello.obj
 
 about:
   homepage: https://github.com/conda-forge/openmp-feedstock
